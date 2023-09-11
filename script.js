@@ -39,6 +39,7 @@ function crearCardComentario(comentario) {
     let puntaje = document.getElementById("rating").value;
 	let ratingEstrellas = crearRatingEstrellas(puntaje);
 	let card = document.createElement("p");
+    card.classList.add("p-style");
 
 	card.innerText = `
     ${comentario} - 
