@@ -11,31 +11,40 @@ let contenedor = document.getElementById("comments-container");
     for(let i = 499 ; i > 489 ; i--){
         contenedor.innerHTML+=
         `
-        <p>${data[i].body}</p>
-        
+        <p>${data[i].body}        
         `
-
     }
    
     
 })
 
-// boton.addEventListener("click",function(){
-//     let comentario = document.createElement("p");
-//     let contenido = document.getElementById("comment").value.trim;
 
-//     comentario.innerText(contenido);
+function crearRatingEstrellas(puntaje) {
+    const maxEstrellas = 5;
+    const ratingEstrellas = document.createElement("div");
 
-//     contenedor.appendChild(comentario);
-// });
+    for (let i = 1; i <= maxEstrellas; i++) {
+      const estrella = document.createElement("span");
+      estrella.classList.add("fa", "fa-star");
+      if (puntaje >= i) {
+        estrella.classList.add("rating");
+      }
+      ratingEstrellas.appendChild(estrella);
+    }
+
+    return ratingEstrellas;
+}
 
 function crearCardComentario(comentario) {
-	
+    let puntaje = document.getElementById("rating").value;
+	let ratingEstrellas = crearRatingEstrellas(puntaje);
 	let card = document.createElement("p");
 
 	card.innerText = `
-    ${comentario}
+    ${comentario} - 
 	`;
+
+    card.appendChild(ratingEstrellas);
 
 	return card;
 }
