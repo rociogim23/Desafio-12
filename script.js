@@ -2,22 +2,10 @@ let boton = document.getElementById("btnEnviar");
 let contenedor = document.getElementById("comments-container");
 
 
-fetch('https://jsonplaceholder.typicode.com/comments')
-.then(response => response.json())
-.then(data =>{
-
-let contenedor = document.getElementById("comments-container");
-
-    for(let i = 499 ; i > 489 ; i--){
-        contenedor.innerHTML+=
-        `
-        <p>${data[i].body}        
-        `
-    }
-   
-    
-})
-
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  
 
 function crearRatingEstrellas(puntaje) {
     const maxEstrellas = 5;
@@ -34,6 +22,27 @@ function crearRatingEstrellas(puntaje) {
 
     return ratingEstrellas;
 }
+
+fetch('https://jsonplaceholder.typicode.com/comments')
+.then(response => response.json())
+.then(data =>{
+
+let contenedor = document.getElementById("comments-container");
+    for(let i = 499 ; i > 489 ; i--){
+        let puntaje = getRandomInt(6);
+        let estrella = crearRatingEstrellas(puntaje);
+        contenedor.innerHTML+=
+        `
+        <p>${data[i].body}</p>     
+        `
+        contenedor.appendChild(estrella);
+
+    }
+   
+    
+})
+
+
 
 function crearCardComentario(comentario) {
     let puntaje = document.getElementById("rating").value;
